@@ -1,0 +1,26 @@
+@carly_backend_HostAddress = http://localhost:5252
+
+GET {{carly_backend_HostAddress}}/vehicles/ffccd501-f386-4363-bed9-19016817d2ca
+Accept: application/json
+
+###
+POST {{carly_backend_HostAddress}}/vehicles
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "vehicle"
+}
+
+###
+POST {{carly_backend_HostAddress}}/refuel
+Content-Type: application/json
+Accept: application/json
+
+{
+  "fillUpDate": "2024-12-23"
+}
+
+###
+GET {{carly_backend_HostAddress}}/refuelings
+Accept: application/json

@@ -1,5 +1,5 @@
 using Carly.App;
-using Carly.App.Commands;
+using Carly.App.Features.Vehicles.AddNew;
 using Carter;
 using Microsoft.OpenApi.Models;
 

@@ -1,9 +1,8 @@
-﻿using Carly.App.Commands;
-using Carly.App.Repositories;
+﻿using Carly.App.Repositories;
 using Carly.App.Services;
 using MediatR;
 
-namespace Carly.App.Handlers
+namespace Carly.App.Features.Vehicles.Update
 {
     internal sealed class UpdateVehicleHandler : IRequestHandler<UpdateVehicleCommand>
     {

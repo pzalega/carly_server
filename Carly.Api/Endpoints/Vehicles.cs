@@ -1,6 +1,7 @@
 ﻿using Carly.Api.Requests;
-using Carly.App.Commands;
-using Carly.App.DTO;
+using Carly.App.Features.Vehicles.AddNew;
+using Carly.App.Features.Vehicles.Delete;
+using Carly.App.Features.Vehicles.Update;
 using Carly.App.Services;
 using Carter;
 using MediatR;

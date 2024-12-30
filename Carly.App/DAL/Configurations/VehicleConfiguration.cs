@@ -8,7 +8,7 @@ namespace Carly.App.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Vehicle> builder)
         {
-            builder.Property(x => x.Id).IsRequired().ValueGeneratedNever();
+            builder.Property(x => x.Id).IsRequired();
             builder.Property(x => x.CreatedAt).IsRequired();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(32);
         }

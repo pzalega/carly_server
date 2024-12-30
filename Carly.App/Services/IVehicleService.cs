@@ -6,8 +6,8 @@ namespace Carly.App.Services
     {
         Task Add(VehicleDto car);
         Task<IEnumerable<VehicleDto>> GetAll();
-        Task<VehicleDto> Get(Guid id);
-        Task Update(Guid id, VehicleDto car);
-        Task Delete(Guid id);
+        Task<VehicleDto> Get(int id);
+        Task Update(int id, VehicleDto car);
+        Task Delete(int id);
     }
 }

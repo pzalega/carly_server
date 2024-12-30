@@ -1,7 +1,9 @@
 ﻿using Carly.Api.Requests;
+using Carly.App.Commands;
 using Carly.App.DTO;
 using Carly.App.Services;
 using Carter;
+using MediatR;
 
 namespace Carly.Api.Endpoints
 {
@@ -14,18 +16,20 @@ namespace Carly.Api.Endpoints
                 return await _vehiclesService.GetAll();
             });
 
-            app.MapGet("vehicles/{vehicleId}", async (Guid vehicleId, IVehicleService _vehiclesService) =>
+            app.MapGet("vehicles/{vehicleId}", async (int vehicleId, IVehicleService _vehiclesService) =>
             {
                 return await _vehiclesService.Get(vehicleId);
             });
 
-            app.MapPost("vehicles", async (AddVehicleRequest request, IVehicleService _vehicleService) =>
+            app.MapPost("vehicles", async (AddVehicleRequest request, IMediator _mediator) =>
             {
-                await _vehicleService.Add();
+                var command = new AddVehicleCommand(request.Name);
+                await _mediator.Send(command);
+
                 return Results.Created();
             });
 
-            app.MapPatch("vehicles/{vehicleId}", async (Guid vehicleId, VehicleDto vehicleDto, IVehicleService _vehicleService) =>
+            app.MapPatch("vehicles/{vehicleId}", async (int vehicleId, VehicleDto vehicleDto, IVehicleService _vehicleService) =>
             {
                 await _vehicleService.Update(vehicleId, vehicleDto);
 
@@ -33,7 +37,7 @@ namespace Carly.Api.Endpoints
 
             });
 
-            app.MapDelete("vehicles/{vehicleId}", async (Guid vehicleId, IVehicleService _vehiclesService) =>
+            app.MapDelete("vehicles/{vehicleId}", async (int vehicleId, IVehicleService _vehiclesService) =>
             {
                 await _vehiclesService.Delete(vehicleId);
 

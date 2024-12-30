@@ -16,7 +16,7 @@ namespace Carly.App.Services
             _refuelRepository = refuelRepository;
         }
 
-        public async Task RefuelVehicle(Guid carId, AddRefuelDto fillUpDto)
+        public async Task RefuelVehicle(int carId, AddRefuelDto fillUpDto)
         {
             var existingCar = await _carRepository.Get(carId);
             if (existingCar is null)
@@ -27,12 +27,10 @@ namespace Carly.App.Services
             existingCar.Refuels.Add(new Refuel
             {
                 VehicleId = carId,
-                CreatedAt = DateTime.UtcNow,
                 RefuelDate = DateOnly.FromDateTime(fillUpDto.FillUpDate),
                 FuelLitres = fillUpDto.FuelLitres,
                 LitrePrice = fillUpDto.LitrePrice,
                 RefuelPrice = fillUpDto.FuelLitres * fillUpDto.LitrePrice,
-                Id = Guid.NewGuid(),
             });
 
             await _carRepository.Update(existingCar);

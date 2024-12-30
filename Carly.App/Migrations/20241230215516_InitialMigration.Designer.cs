@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Carly.App.Migrations
 {
     [DbContext(typeof(CarlyDbContext))]
-    [Migration("20241230160136_InitialMigration")]
+    [Migration("20241230215516_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -28,8 +28,11 @@ namespace Carly.App.Migrations
 
             modelBuilder.Entity("Carly.App.Entities.Refuel", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -49,8 +52,8 @@ namespace Carly.App.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("VehicleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -61,11 +64,14 @@ namespace Carly.App.Migrations
 
             modelBuilder.Entity("Carly.App.Entities.Vehicle", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<DateOnly>("CreatedAt")
-                        .HasColumnType("date");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()

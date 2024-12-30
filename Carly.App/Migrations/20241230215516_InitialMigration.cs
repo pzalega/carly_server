@@ -19,9 +19,10 @@ namespace Carly.App.Migrations
                 schema: "carly",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    CreatedAt = table.Column<DateOnly>(type: "date", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,8 +34,9 @@ namespace Carly.App.Migrations
                 schema: "carly",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VehicleId = table.Column<int>(type: "int", nullable: false),
                     RefuelDate = table.Column<DateOnly>(type: "date", nullable: false),
                     FuelLitres = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     LitrePrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),

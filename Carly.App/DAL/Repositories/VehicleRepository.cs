@@ -29,7 +29,7 @@ namespace Carly.App.DAL.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<Vehicle?> Get(Guid id) => _vehicles.SingleOrDefaultAsync(car => car.Id == id);
+        public Task<Vehicle?> Get(int id) => _vehicles.SingleOrDefaultAsync(car => car.Id == id);
 
         public Task<Vehicle?> Get(string name) => _vehicles.SingleOrDefaultAsync(x => x.Name == name);
 

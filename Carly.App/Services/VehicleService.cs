@@ -21,13 +21,11 @@ namespace Carly.App.Services
                 throw new ArgumentException("Car with that name already registered");
             }
 
-            vehicle.Id = Guid.NewGuid();
-            vehicle.CreatedAt = DateOnly.FromDateTime(DateTime.Now);
             await _vehicleRepository.Add(
-                new Vehicle { Name = vehicle.Name, Id = vehicle.Id, CreatedAt = vehicle.CreatedAt });
+                new Vehicle { Name = vehicle.Name });
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             var existingVehicle = await _vehicleRepository.Get(id);
             if (existingVehicle is null)
@@ -40,7 +38,7 @@ namespace Carly.App.Services
             await _vehicleRepository.Delete(existingVehicle);
         }
 
-        public async Task<VehicleDto?> Get(Guid id)
+        public async Task<VehicleDto?> Get(int id)
         {
             var existingVehicle = await _vehicleRepository.Get(id);
 
@@ -64,7 +62,7 @@ namespace Carly.App.Services
             return vehicles.Select(x=>new VehicleDto { Name = x.Name, Id = x.Id, CreatedAt = x.CreatedAt }).ToList();
         }
 
-        public async Task Update(Guid id, VehicleDto vehicle)
+        public async Task Update(int id, VehicleDto vehicle)
         {
             var existingVehicle = await _vehicleRepository.Get(id);
             if (existingVehicle is null)

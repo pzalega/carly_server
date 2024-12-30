@@ -1,4 +1,5 @@
 using Carly.App;
+using Carly.App.Commands;
 using Carter;
 using Microsoft.OpenApi.Models;
 
@@ -31,6 +32,9 @@ namespace Carly.Api
             }));
             builder.Services.AddApp();
             builder.Services.AddCarter();
+            builder.Services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(AddVehicleCommand).Assembly);
+            });
 
             var app = builder.Build();
             app.UseSwagger();

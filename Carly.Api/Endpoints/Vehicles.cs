@@ -21,25 +21,28 @@ namespace Carly.Api.Endpoints
                 return await _vehiclesService.Get(vehicleId);
             });
 
-            app.MapPost("vehicles", async (AddVehicleRequest request, IMediator _mediator) =>
+            app.MapPost("vehicles", async (AddVehicleRequest request, IMediator mediator) =>
             {
                 var command = new AddVehicleCommand(request.Name);
-                await _mediator.Send(command);
+                await mediator.Send(command);
 
                 return Results.Created();
             });
 
-            app.MapPatch("vehicles/{vehicleId}", async (int vehicleId, VehicleDto vehicleDto, IVehicleService _vehicleService) =>
+            app.MapPatch("vehicles/{vehicleId}", async (int vehicleId, UpdateVehicleRequest request, IMediator mediator) =>
             {
-                await _vehicleService.Update(vehicleId, vehicleDto);
+                var command = new UpdateVehicleCommand(vehicleId, request.Name);
+
+                await mediator.Send(command);
 
                 return Results.NoContent();
 
             });
 
-            app.MapDelete("vehicles/{vehicleId}", async (int vehicleId, IVehicleService _vehiclesService) =>
+            app.MapDelete("vehicles/{vehicleId}", async (int vehicleId, IMediator mediator) =>
             {
-                await _vehiclesService.Delete(vehicleId);
+                var command = new DeleteVehicleCommand(vehicleId);
+                await mediator.Send(command);
 
                 return Results.NoContent();
             });

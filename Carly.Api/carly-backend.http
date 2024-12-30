@@ -9,8 +9,21 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "vehicle"
+  "name": "vehicleName"
 }
+
+###
+PATCH {{carly_backend_HostAddress}}/vehicles/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "changedName"
+}
+
+###
+DELETE {{carly_backend_HostAddress}}/vehicles/1
+Accept: application/json
 
 ###
 POST {{carly_backend_HostAddress}}/refuel

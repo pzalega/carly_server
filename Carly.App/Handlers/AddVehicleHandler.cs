@@ -19,6 +19,7 @@ namespace Carly.App.Handlers
             var existingCar = await _vehicleRepository.Get(request.Name);
             if (existingCar is not null)
             {
+                //TODO error handling
                 throw new ArgumentException("Car with that name already registered");
             }
 

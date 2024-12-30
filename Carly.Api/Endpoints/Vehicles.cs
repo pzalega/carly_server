@@ -1,4 +1,5 @@
-﻿using Carly.App.DTO;
+﻿using Carly.Api.Requests;
+using Carly.App.DTO;
 using Carly.App.Services;
 using Carter;
 
@@ -18,9 +19,9 @@ namespace Carly.Api.Endpoints
                 return await _vehiclesService.Get(vehicleId);
             });
 
-            app.MapPost("vehicles", async (VehicleDto vehicle, IVehicleService _vehicleService) =>
+            app.MapPost("vehicles", async (AddVehicleRequest request, IVehicleService _vehicleService) =>
             {
-                await _vehicleService.Add(vehicle);
+                await _vehicleService.Add();
                 return Results.Created();
             });
 

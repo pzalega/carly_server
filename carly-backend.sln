@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carly.Api", "carly-backend\Carly.Api.csproj", "{48D2051E-0E83-4E82-9316-E2094FA8B02C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carly.Api", "Carly.Api\Carly.Api.csproj", "{48D2051E-0E83-4E82-9316-E2094FA8B02C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carly.App", "Carly.App\Carly.App.csproj", "{74C8F540-DAFD-4BF1-BDAF-308EDF16D797}"
 EndProject

@@ -1,9 +1,10 @@
 ﻿using Carly.App.DAL;
 using Carly.App.DAL.Repositories;
+using Carly.App.Features.Vehicles.AddNew;
 using Carly.App.Repositories;
 using Carly.App.Services;
+using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Carly.App
@@ -17,6 +18,13 @@ namespace Carly.App
             services.AddScoped<IRefuelService, RefuelService>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IRefuelRepository, RefuelRepository>();
+
+            
+            services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(AddVehicleCommand).Assembly);
+            });
+
+            services.AddFluentValidation(new[] { typeof(AddVehicleCommand).Assembly });
 
             return services;
 

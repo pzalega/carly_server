@@ -1,6 +1,6 @@
 @carly_backend_HostAddress = http://localhost:5252
 
-GET {{carly_backend_HostAddress}}/vehicles/ffccd501-f386-4363-bed9-19016817d2ca
+GET {{carly_backend_HostAddress}}/vehicles
 Accept: application/json
 
 ###
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{carly_backend_HostAddress}}/vehicles/1
+PATCH {{carly_backend_HostAddress}}/vehicles/3
 Accept: application/json
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{carly_backend_HostAddress}}/vehicles/1
+DELETE {{carly_backend_HostAddress}}/vehicles/3
 Accept: application/json
 
 ###

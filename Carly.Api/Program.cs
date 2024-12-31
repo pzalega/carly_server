@@ -1,7 +1,9 @@
 using Carly.App;
 using Carly.App.Features.Vehicles.AddNew;
 using Carter;
+using Carly.Infrastructure;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace Carly.Api
 {
@@ -31,10 +33,20 @@ namespace Carly.Api
                        .AllowAnyHeader();
             }));
             builder.Services.AddApp();
-            builder.Services.AddCarter();
-            builder.Services.AddMediatR(cfg => {
-                cfg.RegisterServicesFromAssembly(typeof(AddVehicleCommand).Assembly);
+            builder.Services.AddProblemDetails(options =>
+            {
+                options.CustomizeProblemDetails = context =>
+                {
+                    context.ProblemDetails.Instance =
+                    $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}";
+                    context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+
+                    var activity = context.HttpContext.Features.Get<IHttpActivityFeature>()?.Activity;
+                    context.ProblemDetails.Extensions.TryAdd("traceId", activity?.Id);
+                };
             });
+            builder.Services.AddCarter();
+            builder.Services.AddErrorHandling();
 
             var app = builder.Build();
             app.UseSwagger();
@@ -43,6 +55,7 @@ namespace Carly.Api
             // Configure the HTTP request pipeline.
 
             app.UseCors("MyPolicy");
+            app.UseErrorHandler();
             app.UseHttpsRedirection();
 
 

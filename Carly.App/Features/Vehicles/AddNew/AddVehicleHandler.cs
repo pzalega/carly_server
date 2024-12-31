@@ -1,4 +1,5 @@
 ﻿using Carly.App.Entities;
+using Carly.App.Exceptions;
 using Carly.App.Repositories;
 using MediatR;
 
@@ -18,8 +19,7 @@ namespace Carly.App.Features.Vehicles.AddNew
             var existingCar = await _vehicleRepository.Get(request.Name);
             if (existingCar is not null)
             {
-                //TODO error handling
-                throw new ArgumentException("Car with that name already registered");
+                throw new CarWithThatNameAlreadyExistsException(existingCar.Name);
             }
 
             await _vehicleRepository.Add(

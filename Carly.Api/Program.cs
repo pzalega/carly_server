@@ -46,7 +46,7 @@ namespace Carly.Api
                 };
             });
             builder.Services.AddCarter();
-            builder.Services.AddErrorHandling();
+            builder.Services.AddInfrastructure();
 
             var app = builder.Build();
             app.UseSwagger();
@@ -55,7 +55,7 @@ namespace Carly.Api
             // Configure the HTTP request pipeline.
 
             app.UseCors("MyPolicy");
-            app.UseErrorHandler();
+            app.UseInfrastructure();
             app.UseHttpsRedirection();
 
 

@@ -1,5 +1,28 @@
 @carly_backend_HostAddress = http://localhost:5252
 
+###
+POST {{carly_backend_HostAddress}}/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Pawe³",
+  "email": "pzalega@gmail.com",
+  "password": "123456"
+}
+
+###
+POST {{carly_backend_HostAddress}}/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "pzalega@gmail.com",
+  "password": "123456"
+}
+
+###
+
 GET {{carly_backend_HostAddress}}/vehicles
 Accept: application/json
 
@@ -9,7 +32,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "vehicleName"
+  "name": ""
 }
 
 ###

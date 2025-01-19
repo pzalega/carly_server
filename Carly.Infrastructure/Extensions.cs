@@ -17,13 +17,10 @@ namespace Carly.Infrastructure
             services.AddFirebaseServices();
 
             return services;
-
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
             => app.UseExceptionHandler();
-
-
         public static T GetOptions<T>(this IServiceCollection services, string sectionName) where T : new()
         {
             using var serviceProvider = services.BuildServiceProvider();
@@ -37,7 +34,5 @@ namespace Carly.Infrastructure
             configuration.GetSection(sectionName).Bind(options);
             return options;
         }
-
-
     }
 }

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Carly.Infrastructure\Carly.Infrastructure.csproj" />
     <ProjectReference Include="..\Carly.Shared\Carly.Shared.Abstractions.csproj" />
   </ItemGroup>
 

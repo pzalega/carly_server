@@ -1,5 +1,4 @@
 ﻿using Carly.App.DTO;
-using Carly.App.Entities;
 using Carly.App.Repositories;
 
 namespace Carly.App.Services

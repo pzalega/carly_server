@@ -7,6 +7,7 @@ namespace Carly.App.DAL
     {
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Refuel> Refuels { get; set; }
+        public DbSet<FuelType> FuelTypes { get; set; }
 
         public CarlyDbContext()
         {

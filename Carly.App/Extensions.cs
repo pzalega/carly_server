@@ -3,8 +3,8 @@ using Carly.App.DAL.Repositories;
 using Carly.App.Features.Vehicles.AddNew;
 using Carly.App.Repositories;
 using Carly.App.Services;
+using Carly.Infrastructure.MSSQL;
 using MediatR.Extensions.FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Carly.App
@@ -13,12 +13,13 @@ namespace Carly.App
     {
         public static IServiceCollection AddApp(this IServiceCollection services)
         {
-            services.AddDbContext<CarlyDbContext>(x => x.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Carly;Trusted_Connection=True;TrustServerCertificate=True;"));
+            services.AddMsSql<CarlyDbContext>();
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IRefuelService, RefuelService>();
+            services.AddScoped<IFuelTypeService, FuelTypeService>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IRefuelRepository, RefuelRepository>();
-
+            services.AddScoped<IFuelTypeRepository, FuelTypeRepository>();
             
             services.AddMediatR(cfg => {
                 cfg.RegisterServicesFromAssembly(typeof(AddVehicleCommand).Assembly);

@@ -60,3 +60,6 @@ Accept: application/json
 ###
 GET {{carly_backend_HostAddress}}/refuelings
 Accept: application/json
+
+###
+GET {{carly_backend_HostAddress}}/fueltypes
